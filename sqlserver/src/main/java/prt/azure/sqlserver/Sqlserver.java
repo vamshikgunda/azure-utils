@@ -6,10 +6,9 @@ package prt.azure.sqlserver;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import prt.azure.sqlserver.config.HikariConnectionProvider;
+import prt.azure.sqlserver.config.SimpleConnectionProvider;
 
 import java.sql.*;
-import java.util.Date;
 
 /**
  * @author gunda
@@ -22,7 +21,7 @@ public class Sqlserver {
 
         String USER_SQL = "select * from employee;";
         String insertStatement = "insert into employee values (?, ?, ?)";
-        try (Connection connection = HikariConnectionProvider.getConnection();
+        try (Connection connection = SimpleConnectionProvider.getConnection();
              Statement statement = connection.createStatement()) {
             PreparedStatement preparedStatement = connection.prepareStatement(insertStatement);
             statement.execute(USER_SQL);
